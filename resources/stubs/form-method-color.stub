@@ -1,0 +1,6 @@
+      /**
+       * Set up the field color for the form that which has a color picker as template
+       */
+       updateColorValue (picker, field) {
+         this.form[field] = picker.hex8
+       },

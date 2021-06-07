@@ -1,0 +1,65 @@
+<?php
+/**
+ * @copyright (c) 2019
+ */
+
+namespace {{FullNamespace}};
+
+use Illuminate\Http\Request;
+use App\Lightning\Contracts\ResourceInterface;
+use App\Lightning\Resource;
+{{Uses}}
+
+/**
+ * @class   {{ResourceClass}}
+ * @package {{FullNamespace}}
+ */
+class {{ResourceClass}} extends Resource implements ResourceInterface
+{
+
+    /**
+     * Return Fields
+     *
+     * Return an array containing all the fields you want to be able to use in the front-end
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function fields(Request $request): array
+    {
+        return [
+            {{Fields}}
+        ];
+    }
+
+    /**
+     * Return Filters
+     *
+     * Return an array containing all the filters you want to be able to use in the front-end
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function filters(Request $request): array
+    {
+        return [
+            {{Filters}}
+        ];
+    }
+
+    /**
+     * Return Actions
+     *
+     * Return an array containing all the actions you want to be able to use in the front-end
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function actions(Request $request): array
+    {
+        return [
+            {{Actions}}
+        ];
+    }
+
+}

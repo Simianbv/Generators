@@ -1,0 +1,26 @@
+<?php
+
+namespace {{Namespace}};
+
+use App\Lightning\Criteria;
+use App\Lightning\Contracts\RepositoryInterface as Repository;
+
+/**
+ * @class   {{Class}}
+ * @package {{Namespace}}
+ */
+class {{Class}} extends Criteria {
+
+    /**
+     * @param            $model
+     * @param Repository $repository
+     *
+     * @return mixed
+     */
+    public function apply($model, Repository $repository)
+    {
+        // add custom logic to your model here i.e. :
+        // $model->where('length', '>', 120);
+        return $model;
+    }
+}

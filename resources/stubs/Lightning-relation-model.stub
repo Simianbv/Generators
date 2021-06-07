@@ -1,0 +1,10 @@
+
+    /**
+     * RelationType {{ModelClass}} between {{RelatedModelClass}}
+     *
+     * @return {{RelationType}}
+     */
+    public function {{RelatedModelFunction}}()
+    {
+        return $this->{{RelationType}}({{RelatedModelClass}}::class);
+    }

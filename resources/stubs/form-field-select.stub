@@ -1,0 +1,7 @@
+          <b-field :type="form.getErrorClass('{%Column%}')" :message="form.getErrorMessage('{%Column%}')" label="{%Label%}{%Required%}" horizontal>
+            <b-select placeholder="{%Label%}" name="{%Column%}" v-model="form.{%Column%}" {%RequiredAttribute%}>
+              <option v-for="option in {%Column%}_options" :key="option.value" :value="option.value">
+                {{ option.text }}
+              </option>
+            </b-select>
+          </b-field>

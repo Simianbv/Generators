@@ -1,0 +1,14 @@
+
+    /**
+     * Get {{RelatedModel}}
+     * Returns all the {{RelatedModel}} objects associated with the {{ModelClass}}.
+     * @relation HasMany
+     * @param   {{ModelClass}}          ${{ModelVariable}}
+     * @return  ApiCollection
+     * @throws  Exception
+     */
+    public function {{RelatedModelFunction}}({{ModelClass}} ${{ModelVariable}})
+    {
+        $relation = {{RelatedModelClass}}::where('{{RelatedForeignKey}}', ${{ModelVariable}}->getKey());
+        return new ApiCollection(SearchResult::apply($relation));
+    }

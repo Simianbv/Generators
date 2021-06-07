@@ -1,0 +1,6 @@
+          <b-field :type="form.getErrorClass('{%Column%}')" :message="form.getErrorMessage('{%Column%}')" label="{%Label%}{%Required%}" horizontal>
+            <div @click="palettes.color = !palettes.color" class="color-picker-wrapper">
+              <span class="color-picker-color" :style="{backgroundColor: form.{%Column%}}"></span>
+              <color-picker v-if="palettes.{%Column%}" @input="updateColorValue($event, '{%Column%}')" :value="form.{%Column%}"></color-picker>
+            </div>
+          </b-field>

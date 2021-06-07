@@ -1,0 +1,8 @@
+          <b-field :type="form.getErrorClass('{%Column%}')"
+                   :message="form.getErrorMessage('{%Column%}')"
+                   label="{%Label%}{%Required%}"
+                   horizontal>
+            <b-switch v-model="form.{%Column%}" true-value="1" false-value="0">
+              {{ form.{%Column%} | booltekst }}
+            </b-switch>
+          </b-field>

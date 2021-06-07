@@ -1,0 +1,37 @@
+<?php
+/**
+ * @copyright (c) 2019
+ */
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+/**
+ * @class Create{{Model}}Table
+ */
+class {{Namespace}}Create{{Model}}Table extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('{{Table}}', function (Blueprint $table) {
+            {{Columns}}
+            {{Timestamps}}
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('{{Table}}');
+    }
+}

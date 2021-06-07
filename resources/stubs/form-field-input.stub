@@ -1,0 +1,3 @@
+          <b-field :type="form.getErrorClass('{%Column%}')" :message="form.getErrorMessage('{%Column%}')" label="{%Label%}{%Required%}" horizontal>
+            <b-input {%RequiredAttribute%} type="{%Type%}" name="{%Column%}" v-model="form.{%Column%}" placeholder="{%Label%}"></b-input>
+          </b-field>

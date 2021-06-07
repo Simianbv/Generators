@@ -1,0 +1,18 @@
+      /**
+       * When the editor is mounted and ready, prepare the code content to show
+       */
+      onMountedEditor (editor, field) {
+        if (!this.isNewResource) {
+          this.editor[field] = this.baseResource[field]
+        } else {
+          this.editor[field] = "<div class=\"box\">\n\t<h2>Content</h2>\n</div>"
+        }
+        editor.setValue(this.editor[field])
+      },
+
+      /**
+       * If a change was made to the content, update the form Attributes
+       */
+      onChangeEditor (editor, field) {
+        this.form[field] = editor.getValue()
+      },

@@ -1,0 +1,13 @@
+          <b-field :type="form.getErrorClass('{%Column%}')" :message="form.getErrorMessage('{%Column%}')" label="{%Label%}{%Required%}" horizontal>
+            <Monaco
+              class="lightning-editor"
+              height="520"
+              width="100%"
+              language="{%EditorLanguage%}"
+              theme="{%EditorTheme%}"
+              :code="editor.{%Column%}"
+              :options="editorConfig"
+              :changeThrottle="500"
+              @mounted="onMountedEditor($event, '{%Column%}')"
+              @codeChange="onChangeEditor($event, '{%Column%}')"></Monaco>
+          </b-field>

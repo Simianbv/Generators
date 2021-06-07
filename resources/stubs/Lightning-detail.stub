@@ -1,0 +1,64 @@
+<template>
+  <div class="section">
+    <nav class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <a class="button" @click="$router.go(-1)">
+            <b-icon icon="chevron-left" size="is-small"></b-icon>
+          </a>
+        </div>
+        <div class="level-item">
+          <h1 class="title"> {{ baseResource.name }}</h1>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <div class="field has-addons">
+            <!-- for additional buttons in the top right -->
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- this is where you can define the bulk of the page -->
+    <div class="tile is-ancestor">
+      <pre>{{ baseResource }}</pre>
+    </div>
+  </div>
+</template>
+<script>
+
+export default {
+  name: "{%Model%}-detail",
+  components: {},
+  props: {
+    id: { type: [String, Number] }
+  },
+  data () {
+    return {
+      baseResource: null
+    }
+  },
+
+  mounted () {
+    if(this.id) {
+      this.loadBaseResource()
+    }
+  },
+
+  methods: {
+
+    loadBaseResource () {
+      this.isNewResource = false
+      this["$http"].get('{%Url%}' + this.id)
+        .then(({data}) => {
+          this.baseResource = data.data.resource
+          this.form.bind(data.data.resource)
+        })
+        .catch(({response}) => {
+          this.$toast.open({ type: 'is-danger', message: '{%Model%} kon niet gevonden worden. De foutmelding is: '  + response.data.message, duration: 5000 })
+          this.$router.go(-1)
+        })
+    },
+  }
+}
+</script>

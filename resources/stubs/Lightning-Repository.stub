@@ -1,0 +1,22 @@
+<?php
+
+namespace {{Namespace}};
+
+use App\Lightning\Contracts\RepositoryInterface;
+use App\Lightning\Repository;
+
+/**
+ * @class   {{Class}}
+ * @package {{Namespace}}
+ */
+class {{Class}} extends Repository
+{
+
+    /**
+     * @return string
+     */
+    public function model()
+    {
+        return {{Model}}::class;
+    }
+}

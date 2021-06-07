@@ -1,0 +1,27 @@
+{
+  "name": "simianbv/generators",
+  "description": "Laravel Middleware for generating resources",
+  "type": "project",
+  "keywords": [
+    "laravel",
+    "generator"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Admin",
+      "email": "it@simian.nl"
+    },
+  ],
+  "require": {
+    "php": ">=7.3|^8.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Simianbv\\Generators\\": "src/"
+    }
+  },
+
+  "minimum-stability": "beta"
+}

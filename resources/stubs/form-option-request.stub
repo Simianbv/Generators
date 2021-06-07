@@ -1,0 +1,11 @@
+
+      /**
+       * Get the {%Model%} resources from the api to display as a list.
+       */
+      get{%Model%}() {
+        this.$http.get('{%Url%}').then(({data}) => {
+          data.data.forEach(item => {
+            this.{%Column%}_options.push({ value: item.id, text: item.name })
+          });
+        });
+      },

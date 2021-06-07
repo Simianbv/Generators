@@ -1,0 +1,3 @@
+          <b-field :type="form.getErrorClass('{%Column%}')" :message="form.getErrorMessage('{%Column%}')" label="{%Label%}{%Required%}" horizontal>
+            <b-datepicker placeholder="{%Label%}" icon="calendar-day" v-model="form.{%Column%}"></b-datepicker>
+          </b-field>

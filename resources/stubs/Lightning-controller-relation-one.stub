@@ -1,0 +1,17 @@
+
+    /**
+     * Get {{RelatedModelClass}}
+     *
+     * Returns the {{RelatedModelClass}} associated with this {{ModelClass}}.
+     *
+     * @relation HasOne
+     * @param    {{ModelClass}} ${{ModelVariable}}
+     * @return   ApiResource
+     * @throws   Exception
+     */
+    public function {{RelatedModelFunction}}({{ModelClass}} ${{ModelVariable}})
+    {
+        $relation = {{RelatedModelClass}}::find(${{ModelVariable}}->{{LocalKey}});
+        // $relation = {{RelatedModelClass}}::where('{{RelatedForeignKey}}', ${{ModelVariable}}->{{LocalKey}})->first();
+        return new ApiResource($relation);
+    }
