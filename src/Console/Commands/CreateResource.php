@@ -41,7 +41,7 @@ class CreateResource extends Command
      *
      * @var string
      */
-    protected $signature = 'lightning:make:resource {name}';
+    protected $signature = 'simian:make:resource {name}';
     /**
      * A string containing all the routes you need to add.
      * @var array

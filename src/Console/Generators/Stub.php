@@ -1,20 +1,31 @@
 <?php
 
-
-namespace App\Console\Generators;
+namespace Simianbv\Generators\Console\Generators;
 
 
 use Illuminate\Support\Str;
 
+/**
+ * Class Stub
+ * @package Simianbv\Generators\Console\Generators
+ */
 class Stub
 {
-
+    /**
+     * @var string
+     */
     protected $name = null;
-
+    /**
+     * @var string
+     */
     protected $template = null;
-
+    /**
+     * @var array
+     */
     protected $fillables = [];
-
+    /**
+     * @var string[]
+     */
     protected $delimiters = ["{{", "}}"];
 
     public function __construct (string $name = null, string $path = null, array $delimiters = [])
@@ -28,6 +39,9 @@ class Stub
         }
     }
 
+    /**
+     * @param $name
+     */
     public function loadTemplate ($name)
     {
         $this->template = file_get_contents($this->getTemplate($name));
