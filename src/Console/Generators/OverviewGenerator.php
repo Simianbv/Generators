@@ -116,7 +116,7 @@ class OverviewGenerator extends ClassGenerator
     private function generateColumns ($resource, $namespace, $model)
     {
         $columns = [];
-        $stub = new Stub($this->columnStubToUse);
+        $stub = new Stub($this->columnStub);
         $sortableTypes = ['string', 'integer', 'bigInteger', 'float', 'increments', 'bigIncrements', 'boolean', 'bool'];
 
         if (isset($resource['columns'])) {
