@@ -77,22 +77,6 @@ class ClassGenerator
     }
 
     /**
-     * @param array $fields
-     * @param       $content
-     * @param array $delimiters
-     *
-     * @return mixed
-     */
-    public function fillStub (array $fields, $content, $delimiters = ['{{', '}}'])
-    {
-        $keys = array_map(function ($key) use ($delimiters) {
-            return $delimiters[0] . $key . $delimiters[1];
-        }, array_keys($fields));
-
-        return str_replace($keys, array_values($fields), $content);
-    }
-
-    /**
      * Trim the value from all slashes
      *
      * @param string $value
@@ -156,22 +140,6 @@ class ClassGenerator
     public function setLocation (string $location): void
     {
         $this->location = $location;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStubLocation (string $stub): string
-    {
-        return env("GENERATOR_STUB_DIR") . $stub . '.stub';
-    }
-
-    /**
-     * @param string $stubLocation
-     */
-    public function setStubLocation (string $stubLocation): void
-    {
-        $this->stubLocation = $stubLocation;
     }
 
     /**

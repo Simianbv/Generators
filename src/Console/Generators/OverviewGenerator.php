@@ -23,10 +23,35 @@ use Illuminate\Support\Str;
 class OverviewGenerator extends ClassGenerator
 {
 
-    protected $stubToUse = "Lightning-overview";
-    protected $columnStubToUse = "Lightning-overview-column";
-    protected $detailStubToUse = "Lightning-detail";
+    protected $stub = "Lightning-overview";
+    protected $columnStub = "Lightning-overview-column";
+    protected $detailStub = "Lightning-detail";
 
+
+    public function __construct ($stub = null, $columnStub = null, $detailStub = null)
+    {
+        if (!$stub) {
+            $stub = config("generators.stubs.overview");
+        }
+        if (!$columnStub) {
+            $columnStub = config("generators.stubs.overview-column");
+        }
+        if (!$detailStub) {
+            $detailStub = config("generators.stubs.detail");
+        }
+
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
+
+        if ($columnStub && $columnStub !== $this->columnStub) {
+            $this->columnStub = $columnStub;
+        }
+
+        if ($detailStub && $detailStub !== $this->detailStub) {
+            $this->detailStub = $detailStub;
+        }
+    }
 
     /**
      * @param $resource
@@ -72,8 +97,8 @@ class OverviewGenerator extends ClassGenerator
         $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "', name: '" . $namePrefix . strtolower($overviewFile) . "', component: " . $overviewComponent . ", props: { default: false}}, ");
         $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "/:id', name: '" . $namePrefix . strtolower($detailFile) . "', component: " . $detailComponent . ", props: true}, ");
 
-        $overviewStub = new Stub($this->stubToUse);
-        $detailStub = new Stub($this->detailStubToUse);
+        $overviewStub = new Stub($this->stub);
+        $detailStub = new Stub($this->detailStub);
 
         return [
             'overview' => $overviewStub->fill($overviewFields, ['{%', '%}']),

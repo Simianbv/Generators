@@ -16,9 +16,7 @@ use Illuminate\Support\Str;
 class FormGenerator extends ClassGenerator
 {
 
-    private $stubToUse = 'Lightning-form';
-
-    private $fieldStubs = [];
+    private $stub = 'Lightning-form';
     private $methods = [];
     private $editorOptions = [];
     private $editorConfig = [];
@@ -39,7 +37,6 @@ class FormGenerator extends ClassGenerator
      */
     public function create ($resource, $namespace, $model)
     {
-        $this->fieldStubs = [];
         $this->methods = [];
         $this->editorOptions = [];
         $this->editorConfig = [];
@@ -69,7 +66,7 @@ class FormGenerator extends ClassGenerator
             'Methods'         => $this->getMethods(),
         ];
 
-        $stub = new Stub($this->stubToUse);
+        $stub = new Stub($this->stub);
         $content = $stub->fill($fields, ['{%', '%}']);
 
         // Feedback to add to the output
@@ -333,7 +330,6 @@ class FormGenerator extends ClassGenerator
 
     /**
      * Get the relation Option method and fill in the stub.
-     *
      * @param string $column
      * @param string $relatedModel
      * @param array $attr
