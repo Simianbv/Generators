@@ -69,6 +69,8 @@ class OverviewGenerator extends ClassGenerator
         $url = ($namespace != '' ? Str::slug(strtolower($namespace)) . '/' : '') . Str::slug(Str::snake(Str::plural($model))) . '/';
 
         $overviewFields = [
+            'LabelSingle'    => $resource['singular'] ?? Str::singular($model),
+            'LabelPlural'    => $resource['plural'] ?? Str::plural($model),
             'ModelSingle'    => $model,
             'ModelUrl'       => $url,
             'ModelPlural'    => Str::plural($model),
