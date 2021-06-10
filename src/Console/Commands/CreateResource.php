@@ -302,7 +302,7 @@ class CreateResource extends Command
         if (!Str::endsWith($dir, "/")) {
             $dir .= "/";
         }
-        $file = ucfirst(Str::slug(Str::snake($model)) . "-form.vue");
+        $file = ucfirst(Str::camel($model) . "Form.vue");
         $path = $dir . $file;
 
         $this->info(str_pad("Creating Form:", self::$PAD_LENGTH) . $path);
@@ -326,12 +326,13 @@ class CreateResource extends Command
         if (!Str::endsWith($dir, "/")) {
             $dir .= "/";
         }
-        $overviewFile = ucfirst(Str::slug(Str::snake(Str::plural($model))) . "-overview.vue");
-        $detailFile = ucfirst(Str::slug(Str::snake($model)) . "-detail.vue");
+        $overviewFile = ucfirst(Str::camel($model) . "Overview.vue");
+        $detailFile = ucfirst(Str::camel($model) . "Detail.vue");
         $overviewPath = $dir . $overviewFile;
         $detailPath = $dir . $detailFile;
 
         $this->info(str_pad("Creating Overview:", self::$PAD_LENGTH) . $overviewPath);
+        $this->info(str_pad("Creating Detail:", self::$PAD_LENGTH) . $detailPath);
         $contents = $this->overviewGenerator->create($resource, $namespace, $model);
 
         file_put_contents($overviewPath, $contents['overview']);
