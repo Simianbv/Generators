@@ -18,14 +18,39 @@ class ControllerGenerator extends ClassGenerator
 
     protected static $NS = "App\\Http\\Controllers\\";
 
-    protected $stub = "Lightning-Controller";
-    protected $hasManyStub = "Lightning-Controller-relation-many";
-    protected $hasOneStub = "Lightning-Controller-relation-one";
+    protected $stub = "controller";
+    protected $hasManyStub = "controller-has-many";
+    protected $hasOneStub = "controller-has-one";
 
     /**
      * @var array
      */
     private $uses;
+
+    public function __construct ($stub = null, $hasManyStub = null, $hasOneStub = null)
+    {
+        if (!$stub) {
+            $stub = config("generators.stubs.overview");
+        }
+        if (!$hasManyStub) {
+            $columnStub = config("generators.stubs.controller-has-many");
+        }
+        if (!$hasOneStub) {
+            $detailStub = config("generators.stubs.controller-has-one");
+        }
+
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
+
+        if ($hasManyStub && $hasManyStub !== $this->hasManyStub) {
+            $this->hasManyStub = $hasManyStub;
+        }
+
+        if ($hasOneStub && $hasOneStub !== $this->hasOneStub) {
+            $this->hasOneStub = $hasOneStub;
+        }
+    }
 
     /**
      * @param $resource
