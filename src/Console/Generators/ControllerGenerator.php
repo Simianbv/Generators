@@ -18,14 +18,9 @@ class ControllerGenerator extends ClassGenerator
 
     protected static $NS = "App\\Http\\Controllers\\";
 
-    protected $stubToUse = "Lightning-Controller";
-    protected $hasManyStubToUse = "Lightning-Controller-relation-many";
-    protected $hasOneStubToUse = "Lightning-Controller-relation-one";
-
-    /**
-     * @var string
-     */
-    private $stub;
+    protected $stub = "Lightning-Controller";
+    protected $hasManyStub = "Lightning-Controller-relation-many";
+    protected $hasOneStub = "Lightning-Controller-relation-one";
 
     /**
      * @var array
@@ -53,6 +48,8 @@ class ControllerGenerator extends ClassGenerator
             'Namespace'       => 'App\\Http\\Controllers\\' . $namespace,
             'FullModelClass'  => 'App\\Models\\' . $this->ns($namespace) . $model,
             'ModelClass'      => $model,
+            'labelSingular'   => $resource['singular'] ?? $model,
+            'labelPlural'     => $resource['plural'] ?? $model,
             'ModelVariable'   => Str::camel($model),
             'RelatedFields'   => implode("", $this->fillRelationStubs($resource, $namespace, $model)),
         ];
@@ -63,7 +60,7 @@ class ControllerGenerator extends ClassGenerator
         $params = static::$NS . $this->ns($namespace) . $model . 'Controller::class';
         $this->parent->addRoute('Route::apiResource("' . $url . '", ' . $params . ');');
 
-        $stub = new Stub($this->stubToUse);
+        $stub = new Stub($this->stub);
         return $stub->fill($fields);
     }
 
@@ -138,7 +135,7 @@ class ControllerGenerator extends ClassGenerator
 
         // fill up the stub with the fields defined above
 
-        $stub = new Stub($this->hasManyStubToUse);
+        $stub = new Stub($this->hasManyStub);
         return $stub->fill($fields);
     }
 
@@ -184,7 +181,7 @@ class ControllerGenerator extends ClassGenerator
 
         $this->parent->addRoute('get', $parentRoute, $params);
 
-        $stub = new Stub($this->hasOneStubToUse);
+        $stub = new Stub($this->hasOneStub);
         return $stub->fill($fields);
     }
 }
