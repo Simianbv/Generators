@@ -65,6 +65,18 @@ class ClassGenerator
     }
 
     /**
+     * @param array $fields
+     */
+    public function fill (array $fields)
+    {
+        foreach ($fields as $key => $value) {
+            if (in_array($key, $this->fillables)) {
+                $this->data[$key] = $value;
+            }
+        }
+    }
+
+    /**
      * Trim the value from all slashes
      *
      * @param string $value
