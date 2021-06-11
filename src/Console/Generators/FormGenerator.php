@@ -70,7 +70,7 @@ class FormGenerator extends ClassGenerator
         $content = $stub->fill($fields, ['{%', '%}']);
 
         // Feedback to add to the output
-        $file = ucfirst(Str::slug(Str::snake($model)) . "-form");
+        $file = ucfirst(Str::camel($model) . "Form");
         $fileTrimmed = ucfirst(Str::slug(Str::snake($model)));
         $component = ucfirst(strtolower($namespace) . $model) . "Form";
 

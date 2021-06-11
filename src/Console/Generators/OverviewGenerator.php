@@ -85,8 +85,8 @@ class OverviewGenerator extends ClassGenerator
             'Url'   => $url,
         ];
 
-        $overviewFile = ucfirst(Str::slug(Str::snake(Str::plural($model))) . "-overview");
-        $detailFile = ucfirst(Str::slug(Str::snake($model)) . "-detail");
+        $overviewFile = ucfirst(Str::camel($model) . "Overview");
+        $detailFile = ucfirst(Str::camel($model) . "Detail");
 
         $overviewComponent = ucfirst(strtolower($namespace) . Str::plural($model)) . "Overview";
         $detailComponent = ucfirst(strtolower($namespace) . $model) . "Detail";
