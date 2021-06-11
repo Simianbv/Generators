@@ -16,13 +16,6 @@ class MigrationGenerator extends ClassGenerator
 
     protected $stub = "migration";
 
-    protected $fillables = [
-        'Model',
-        'Table',
-        'Columns',
-        'Timestamps',
-    ];
-
     /**
      * MigrationGenerator constructor.
      * @param string $stub
@@ -30,7 +23,7 @@ class MigrationGenerator extends ClassGenerator
     public function __construct ($stub = null)
     {
         if (!$stub) {
-            $stub = config("generators.stubs.overview");
+            $stub = config("generators.stubs.migration");
         }
         if ($stub && $stub !== $this->stub) {
             $this->stub = $stub;
@@ -155,7 +148,5 @@ class MigrationGenerator extends ClassGenerator
             'RelationType'         => Str::camel($attr['type']),
             'RelatedModelFunction' => $fnName,
         ];
-
-        return $this->fillStub($fields, $this->relation_stub);
     }
 }
