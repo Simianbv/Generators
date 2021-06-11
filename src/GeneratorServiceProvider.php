@@ -51,7 +51,7 @@ class GeneratorServiceProvider extends ServiceProvider
                 __DIR__ . '/../resources/stubs/detail.stub'              => $path . 'detail.stub',
                 __DIR__ . '/../resources/stubs/form.stub'                => $path . 'form.stub',
                 __DIR__ . '/../resources/stubs/migration.stub'           => $path . 'migration.stub',
-                __DIR__ . '/../resources/stubs/Lightning-Model.stub'     => $path . 'model.stub',
+                __DIR__ . '/../resources/stubs/model.stub'               => $path . 'model.stub',
                 __DIR__ . '/../resources/stubs/overview.stub'            => $path . 'overview.stub',
                 __DIR__ . '/../resources/stubs/overview-column.stub'     => $path . 'overview-column.stub',
                 __DIR__ . '/../resources/stubs/model-relation.stub'      => $path . 'model-relation.stub',
