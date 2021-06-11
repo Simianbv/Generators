@@ -76,7 +76,7 @@ class OverviewGenerator extends ClassGenerator
             'ModelPlural'    => Str::plural($model),
             'ModelLink'      => Str::slug(($namespace != '' ? $namespace . '-' : '') . Str::snake($model)),
             'Acl'            => strtolower($namespace) . '.' . Str::slug(Str::snake($model)),
-            'ModelNamespace' => $this->ns($namespace) . $model,
+            'ModelNamespace' => $this->ns($namespace) . '\\' . $model,
             'Columns'        => "\n" . implode("", $columns),
         ];
 
@@ -85,19 +85,24 @@ class OverviewGenerator extends ClassGenerator
             'Url'   => $url,
         ];
 
-        $overviewFile = ucfirst(Str::camel($model) . "Overview");
-        $detailFile = ucfirst(Str::camel($model) . "Detail");
+        $overviewFile = ucfirst(Str::camel($model) . "Overview.vue");
+        $detailFile = ucfirst(Str::camel($model) . "Detail.vue");
 
         $overviewComponent = ucfirst(strtolower($namespace) . Str::plural($model)) . "Overview";
         $detailComponent = ucfirst(strtolower($namespace) . $model) . "Detail";
 
-        $prefix = ($namespace != '' ? strtolower($namespace) . '/' : '');
         $namePrefix = ($namespace != '' ? strtolower($namespace) . '-' : '');
 
-        $this->parent->addFrontendImport('const ' . $overviewComponent . ' = () => import(/* webpackChunkName: "' . strtolower($namespace) . '" */ "./views/' . strtolower($namespace) . '/' . $overviewFile . '.vue")');
-        $this->parent->addFrontendImport('const ' . $detailComponent . ' = () => import(/* webpackChunkName: "' . strtolower($namespace) . '" */ "./views/' . strtolower($namespace) . '/' . $detailFile . '.vue")');
-        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "', name: '" . $namePrefix . strtolower($overviewFile) . "', component: " . $overviewComponent . ", props: { default: false}}, ");
-        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "/:id', name: '" . $namePrefix . strtolower($detailFile) . "', component: " . $detailComponent . ", props: true}, ");
+        $overviewRouteName = $namePrefix . strtolower(ucfirst(Str::slug(Str::snake(Str::plural($model))) . "-overview"));
+        $detailRouteName = $namePrefix . strtolower(ucfirst(Str::slug(Str::snake($model)) . "-detail"));
+
+        $prefix = ($namespace != '' ? strtolower($namespace) . '/' : '');
+
+
+        $this->parent->addFrontendImport('const ' . $overviewComponent . ' = () => import(/* webpackChunkName: "' . strtolower($namespace) . '" */ "./views/' . strtolower($namespace) . '/' . $overviewFile . '")');
+        $this->parent->addFrontendImport('const ' . $detailComponent . ' = () => import(/* webpackChunkName: "' . strtolower($namespace) . '" */ "./views/' . strtolower($namespace) . '/' . $detailFile . '")');
+        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "', name: '" . $overviewRouteName . "', component: " . $overviewComponent . ", props: { default: false}}, ");
+        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "/:id', name: '" . $detailRouteName . "', component: " . $detailComponent . ", props: true}, ");
 
         $overviewStub = new Stub($this->stub);
         $detailStub = new Stub($this->detailStub);

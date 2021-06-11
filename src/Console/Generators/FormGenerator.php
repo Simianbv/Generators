@@ -74,9 +74,12 @@ class FormGenerator extends ClassGenerator
         $fileTrimmed = ucfirst(Str::slug(Str::snake($model)));
         $component = ucfirst(strtolower($namespace) . $model) . "Form";
 
+        $prefix = ($namespace != '' ? strtolower($namespace) . '/' : '');
+        $prefixDash = ($namespace != '' ? strtolower($namespace) . '-' : '');
+
         $this->parent->addFrontendImport('const ' . $component . ' = () => import(/* webpackChunkName: "' . strtolower($namespace) . '" */ "./views/' . strtolower($namespace) . '/' . $file . '.vue")');
-        $this->parent->addFrontendRoute("{path: '/" . ($namespace != '' ? strtolower($namespace) . '/' : '') . Str::slug(Str::snake(Str::plural($model))) . "/create',      name: '" . ($namespace != '' ? strtolower($namespace) . '-' : '') . strtolower($fileTrimmed) . "-create', component: " . $component . ", props: true}, ");
-        $this->parent->addFrontendRoute("{path: '/" . ($namespace != '' ? strtolower($namespace) . '/' : '') . Str::slug(Str::snake(Str::plural($model))) . "/:id/edit',   name: '" . ($namespace != '' ? strtolower($namespace) . '-' : '') . strtolower($fileTrimmed) . "-edit', component: " . $component . ", props: true}, ");
+        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "/create',      name: '" . $prefixDash . strtolower($fileTrimmed) . "-create', component: " . $component . ", props: true}, ");
+        $this->parent->addFrontendRoute("{path: '/" . $prefix . Str::slug(Str::snake(Str::plural($model))) . "/:id/edit',   name: '" . $prefixDash . strtolower($fileTrimmed) . "-edit', component: " . $component . ", props: true}, ");
 
         return $content;
     }
