@@ -13,12 +13,8 @@ use Illuminate\Support\Str;
  */
 class MigrationGenerator extends ClassGenerator
 {
-    /**
-     * @var string
-     */
-    protected $location = null;
 
-    protected $stubFile = "Lightning-Migration";
+    protected $stub = "migration";
 
     protected $fillables = [
         'Model',
@@ -27,9 +23,18 @@ class MigrationGenerator extends ClassGenerator
         'Timestamps',
     ];
 
-    public function __construct ()
+    /**
+     * MigrationGenerator constructor.
+     * @param string $stub
+     */
+    public function __construct ($stub = null)
     {
-        $this->location = env("GENERATOR_DB_MIGRATION_PATH");
+        if (!$stub) {
+            $stub = config("generators.stubs.overview");
+        }
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
     }
 
     /**
@@ -43,7 +48,7 @@ class MigrationGenerator extends ClassGenerator
     {
         $this->resource = $resource;
 
-        $stub = new Stub($this->stubFile);
+        $stub = new Stub($this->stub);
 
         $columns = [];
 

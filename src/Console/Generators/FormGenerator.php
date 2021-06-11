@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
 class FormGenerator extends ClassGenerator
 {
 
-    private $stub = 'Lightning-form';
+    private $stub = 'form';
     private $methods = [];
     private $editorOptions = [];
     private $editorConfig = [];
@@ -27,6 +27,15 @@ class FormGenerator extends ClassGenerator
     protected static $strings = ['varchar', 'string', 'text', 'mediumText', 'bigText'];
     protected static $booleans = ['bool', 'boolean', 'tinyInt', 'tinyInteger'];
 
+    public function __construct ($stub = null, $columnStub = null, $detailStub = null)
+    {
+        if (!$stub) {
+            $stub = config("generators.stubs.form");
+        }
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
+    }
 
     /**
      * @param $resource

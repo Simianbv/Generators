@@ -18,8 +18,8 @@ class ModelGenerator extends ClassGenerator
      * @var string
      */
 
-    protected $stubToUse = "Lightning-Model";
-    protected $relationStubToUse = "Lightning-relation-model";
+    protected $stub = "model";
+    protected $relationStub = "model-relation";
 
     protected $fillables = [
         'Date',
@@ -28,6 +28,24 @@ class ModelGenerator extends ClassGenerator
         'Fillables',
         'Relations',
     ];
+
+    public function __construct ($stub = null, $relationStub = null)
+    {
+        if (!$stub) {
+            $stub = config("generators.stubs.model");
+        }
+
+        if (!$relationStub) {
+            $stub = config("generators.stubs.model-relation");
+        }
+
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
+        if ($relationStub && $relationStub !== $this->relationStub) {
+            $this->relationStub = $relationStub;
+        }
+    }
 
     /**
      * @param $resource
@@ -38,9 +56,6 @@ class ModelGenerator extends ClassGenerator
      */
     public function create ($resource, $namespace, $model)
     {
-        $stub = new Stub($this->stubToUse);
-        $relationStub = new Stub($this->relationStubToUse);
-
         $this->resource = $resource;
 
         $fillables = [];
@@ -101,6 +116,7 @@ class ModelGenerator extends ClassGenerator
             'Implements' => (!empty($implements) ? ' implements ' . implode(', ', $implements) : ''),
         ];
 
+        $stub = new Stub($this->stub);
         return $stub->fill($fields);
     }
 
@@ -132,7 +148,7 @@ class ModelGenerator extends ClassGenerator
             'RelatedModelFunction' => $fnName,
         ];
 
-        $stub = new Stub($this->relationStubToUse);
+        $stub = new Stub($this->relationStub);
         return $stub->fill($fields);
     }
 }

@@ -30,7 +30,7 @@ class ControllerGenerator extends ClassGenerator
     public function __construct ($stub = null, $hasManyStub = null, $hasOneStub = null)
     {
         if (!$stub) {
-            $stub = config("generators.stubs.overview");
+            $stub = config("generators.stubs.controller");
         }
         if (!$hasManyStub) {
             $columnStub = config("generators.stubs.controller-has-many");

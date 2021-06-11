@@ -17,8 +17,17 @@ class ResourceGenerator extends ClassGenerator
     /**
      * @var string
      */
+    protected $stub = "resource";
 
-    protected $stubToUse = "Lightning-Resource";
+    public function __construct ($stub = null)
+    {
+        if (!$stub) {
+            $stub = config("generators.stubs.resource");
+        }
+        if ($stub && $stub !== $this->stub) {
+            $this->stub = $stub;
+        }
+    }
 
 
     /**
@@ -52,7 +61,7 @@ class ResourceGenerator extends ClassGenerator
             'Actions'       => implode(',', $actions),
         ];
 
-        $stub = new Stub($this->stubToUse);
+        $stub = new Stub($this->stub);
         return $stub->fill($fields);
     }
 

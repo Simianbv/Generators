@@ -23,9 +23,9 @@ use Illuminate\Support\Str;
 class OverviewGenerator extends ClassGenerator
 {
 
-    protected $stub = "Lightning-overview";
-    protected $columnStub = "Lightning-overview-column";
-    protected $detailStub = "Lightning-detail";
+    protected $stub = "overview";
+    protected $columnStub = "overview-column";
+    protected $detailStub = "detail";
 
 
     public function __construct ($stub = null, $columnStub = null, $detailStub = null)

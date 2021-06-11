@@ -14,17 +14,18 @@ return [
     ],
 
     'stubs' => [
-        'controller'          => 'Controller',
-        'migration'           => 'Migration',
-        'model'               => 'Model',
-        'resource'            => 'Resource',
+        'controller'          => 'controller',
+        'migration'           => 'migration',
+        'model'               => 'model',
+        'resource'            => 'resource',
         'overview'            => 'overview',
         'detail'              => 'detail',
         'form'                => 'form',
-        'controller-many'     => 'controller-relation-many',
-        'controller-one'      => 'controller-relation-one',
-        'repository'          => 'Repository',
-        'criteria'            => 'Criteria',
+        'controller-has-many' => 'controller-has-many',
+        'controller-has-one'  => 'controller-has-one',
+        'model-relation'      => 'model-relation',
+        'repository'          => 'repository',
+        'criteria'            => 'criteria',
         'fields'              => [
             'bool'          => 'form-field-boolean',
             'color'         => 'form-field-color',
@@ -37,7 +38,6 @@ return [
         ],
         'form-option-request' => 'form-option-request',
         'overview-column'     => 'overview-column',
-        'relation-model'      => 'relation-model',
     ],
 
 ];

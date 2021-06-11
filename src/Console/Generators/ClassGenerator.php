@@ -65,18 +65,6 @@ class ClassGenerator
     }
 
     /**
-     * @param array $fields
-     */
-    public function fill (array $fields)
-    {
-        foreach ($fields as $key => $value) {
-            if (in_array($key, $this->fillables)) {
-                $this->data[$key] = $value;
-            }
-        }
-    }
-
-    /**
      * Trim the value from all slashes
      *
      * @param string $value
@@ -124,63 +112,6 @@ class ClassGenerator
             return '';
         }
         return strlen($ns) > 0 ? $ns . '/' : '';
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocation (): string
-    {
-        return $this->location;
-    }
-
-    /**
-     * @param string $location
-     */
-    public function setLocation (string $location): void
-    {
-        $this->location = $location;
-    }
-
-    /**
-     * @return array
-     */
-    public function getResource (): array
-    {
-        return $this->resource;
-    }
-
-    /**
-     * @param array $resource
-     */
-    public function setResource (array $resource): void
-    {
-        $this->resource = $resource;
-    }
-
-    /**
-     * @return array
-     */
-    public function getFillables (): array
-    {
-        return $this->fillables;
-    }
-
-    /**
-     * @param array $fillables
-     */
-    public function setFillables (array $fillables): void
-    {
-        $this->fillables = $fillables;
-    }
-
-    /**
-     * @param $key
-     * @param $value
-     */
-    public function addFillables ($key, $value): void
-    {
-        $this->fillables[$key] = $value;
     }
 
 }
